@@ -21,7 +21,7 @@ domain_pass=$(curl \
                 -H "X-Vault-Token: $VAULT_TOKEN" \
                 -H "Content-Type: text/html" \
                 -X GET \
-                https://vault.10006.elluciancloud.com/v1/secret/data/cloud/infra/platform/ad-passwords/$REGION |
+                https://vault_url/v1/secret/data/cloud/infra/platform/ad-passwords/$REGION |
                 sed -e 's/[{}]/''/g' |
                 awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' |
                 awk -F'"' '/\"data\"/ { print $8 }')
